@@ -1191,7 +1191,7 @@ pub fn rewrite_multiple_patterns(
     } else {
         definitive_tactic(
             &items,
-            ListTactic::HorizontalVertical,
+            ListTactic::Vertical,
             Separator::VerticalBar,
             shape.width,
         )
