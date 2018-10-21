@@ -665,20 +665,7 @@ impl Ord for UseSegment {
             | (&Crate(ref a), &Crate(ref b)) => a.cmp(b),
             (&Glob, &Glob) => Ordering::Equal,
             (&Ident(ref ia, ref aa), &Ident(ref ib, ref ab)) => {
-                // snake_case < CamelCase < UPPER_SNAKE_CASE
-                if ia.starts_with(char::is_uppercase) && ib.starts_with(char::is_lowercase) {
-                    return Ordering::Greater;
-                }
-                if ia.starts_with(char::is_lowercase) && ib.starts_with(char::is_uppercase) {
-                    return Ordering::Less;
-                }
-                if is_upper_snake_case(ia) && !is_upper_snake_case(ib) {
-                    return Ordering::Greater;
-                }
-                if !is_upper_snake_case(ia) && is_upper_snake_case(ib) {
-                    return Ordering::Less;
-                }
-                let ident_ord = ia.cmp(ib);
+                let ident_ord = ia.to_lowercase().cmp(&ib.to_lowercase());
                 if ident_ord != Ordering::Equal {
                     return ident_ord;
                 }
