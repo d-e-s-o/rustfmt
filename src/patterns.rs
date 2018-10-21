@@ -74,7 +74,7 @@ impl Rewrite for Pat {
                 } else {
                     definitive_tactic(
                         &items,
-                        ListTactic::HorizontalVertical,
+                        ListTactic::Vertical,
                         Separator::VerticalBar,
                         shape.width,
                     )
