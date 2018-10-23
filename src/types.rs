@@ -756,7 +756,7 @@ fn join_bounds(
 
     // Try to join types in a single line
     let joiner = match context.config.type_punctuation_density() {
-        TypeDensity::Compressed => "+",
+        TypeDensity::Compressed |
         TypeDensity::Wide => " + ",
     };
     let type_strs = items
