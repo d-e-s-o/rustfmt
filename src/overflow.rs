@@ -622,6 +622,12 @@ impl<'a> Context<'a> {
             _ => false,
         };
 
+        let trailing_separator = if self.context.use_block_indent() && list_items.len() > 1 && ends_with_newline {
+          SeparatorTactic::Always
+        } else {
+          trailing_separator
+        };
+
         let fmt = ListFormatting::new(self.nested_shape, self.context.config)
             .tactic(tactic)
             .trailing_separator(trailing_separator)
